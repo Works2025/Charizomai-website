@@ -3,6 +3,7 @@ import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../supabase';
+import './FundraisersCarousel.css';
 
 export default function FundraisersCarousel() {
     const [fundraisers, setFundraisers] = useState([]);
@@ -40,61 +41,20 @@ export default function FundraisersCarousel() {
         fetchFundraisers();
     }, []);
 
-    if (loading) return null; // Or a loading skeleton if preferred
+    if (loading) return null;
 
     return (
-        <section style={{
-            background: 'linear-gradient(135deg, #0D3B3B 0%, #1a5050 100%)',
-            padding: '6rem 0',
-            color: 'white'
-        }}>
+        <section className="fundraisers-section">
             <div className="container">
                 {/* Header */}
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'flex-start',
-                    marginBottom: '3rem',
-                    maxWidth: '1200px',
-                    margin: '0 auto 3rem'
-                }}>
+                <div className="fundraisers-header">
                     <div>
-                        <h2 style={{
-                            fontSize: '2.5rem',
-                            fontWeight: 700,
-                            color: 'white',
-                            marginBottom: '1rem',
-                            lineHeight: 1.3,
-                            maxWidth: '600px'
-                        }}>
+                        <h2 className="fundraisers-title">
                             More ways to make a difference. Find fundraisers inspired by what you care about.
                         </h2>
 
                         {/* Category Dropdown */}
-                        <button style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.5rem',
-                            padding: '0.6rem 1.25rem',
-                            background: 'transparent',
-                            border: '1px solid rgba(255, 255, 255, 0.3)',
-                            borderRadius: '50px',
-                            fontSize: '0.95rem',
-                            fontWeight: 500,
-                            color: 'white',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s ease',
-                            marginTop: '1.5rem'
-                        }}
-                            onMouseEnter={(e) => {
-                                e.target.style.borderColor = 'rgba(255, 255, 255, 0.5)';
-                                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                            }}
-                            onMouseLeave={(e) => {
-                                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-                                e.target.style.background = 'transparent';
-                            }}
-                        >
+                        <button className="fundraisers-dropdown">
                             Happening worldwide
                             <ChevronDown size={16} />
                         </button>
@@ -102,72 +62,25 @@ export default function FundraisersCarousel() {
 
                     {/* Navigation Arrows */}
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
-                        <button style={{
-                            width: '40px',
-                            height: '40px',
-                            borderRadius: '50%',
-                            border: '1px solid rgba(255, 255, 255, 0.3)',
-                            background: 'transparent',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s ease'
-                        }}
-                            onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
-                            onMouseLeave={(e) => e.target.style.background = 'transparent'}
-                        >
+                        <button className="fundraisers-nav-btn">
                             <ChevronLeft size={20} color="white" />
                         </button>
-                        <button style={{
-                            width: '40px',
-                            height: '40px',
-                            borderRadius: '50%',
-                            border: '1px solid rgba(255, 255, 255, 0.3)',
-                            background: 'transparent',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s ease'
-                        }}
-                            onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
-                            onMouseLeave={(e) => e.target.style.background = 'transparent'}
-                        >
+                        <button className="fundraisers-nav-btn">
                             <ChevronRight size={20} color="white" />
                         </button>
                     </div>
                 </div>
 
                 {/* Fundraiser Cards */}
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(4, 1fr)',
-                    gap: '1.5rem',
-                    maxWidth: '1200px',
-                    margin: '0 auto'
-                }}>
+                <div className="fundraisers-grid">
                     {fundraisers.map((fundraiser, i) => (
                         <Link to={`/causes/${fundraiser.id}`} key={fundraiser.id} style={{ textDecoration: 'none' }}>
                             <motion.article
-                                style={{
-                                    background: 'white',
-                                    borderRadius: '12px',
-                                    overflow: 'hidden',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s ease',
-                                    height: '100%',
-                                    display: 'flex',
-                                    flexDirection: 'column'
-                                }}
+                                className="fundraiser-card"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: i * 0.1 }}
                                 viewport={{ once: true }}
-                                whileHover={{
-                                    transform: 'translateY(-4px)',
-                                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)'
-                                }}
                             >
                                 {/* Image */}
                                 <div style={{
