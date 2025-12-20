@@ -1,0 +1,49 @@
+.campaigns-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.campaigns-right-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+/* Tablet: Stack main grid (Featured on top, others below) */
+@media (max-width: 1024px) {
+    .campaigns-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Maybe make the featured card not full height on mobile? */
+    .campaign-card-featured .campaign-image-container {
+        height: 240px !important;
+    }
+}
+
+/* Mobile: Stack the small cards too */
+@media (max-width: 600px) {
+    .campaigns-right-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.campaign-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E5E7EB;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.campaign-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

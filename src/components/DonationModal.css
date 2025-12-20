@@ -1,0 +1,298 @@
+/* DonationModal.css */
+
+.donation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.donation-container {
+    display: flex;
+    gap: 24px;
+    max-width: 1000px;
+    width: 100%;
+    align-items: stretch;
+    justify-content: center;
+    position: relative;
+    /* Framer motion handles transform/opacity */
+}
+
+.donation-close-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    color: white;
+}
+
+.donation-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-md, 0 4px 6px rgba(0,0,0,0.1));
+}
+
+.donation-card.visuals {
+    flex: 1;
+    min-width: 320px;
+    max-width: 480px;
+}
+
+.donation-card.form {
+    flex: 1;
+    min-width: 320px;
+    max-width: 420px;
+    padding: 2.5rem;
+    position: relative;
+    box-shadow: var(--shadow-lg, 0 10px 15px rgba(0,0,0,0.1));
+    overflow-y: auto;
+    max-height: 85vh; 
+}
+
+/* Collage Grid */
+.collage-grid {
+    display: grid;
+    grid-template-columns: 40% 30% 30%;
+    height: 100%;
+}
+
+.collage-item {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Frequency Toggle */
+.frequency-toggle {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.freq-btn {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 6px;
+    background: white;
+    border: 1px solid #E2E8F0;
+    color: #64748B;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.freq-btn.active {
+    border: 2px solid var(--brand-orange, #e67e22);
+    color: var(--brand-orange, #e67e22);
+}
+
+.freq-btn.active-monthly {
+    background: #fff7ed;
+    border: 2px solid var(--brand-orange, #e67e22);
+    color: #1E293B;
+}
+
+/* Amount Grid */
+.amount-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+.amount-btn {
+    padding: 0.8rem;
+    background: white;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    color: #1E293B;
+    font-weight: 500;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.amount-btn.selected {
+    border: 2px solid var(--brand-orange, #e67e22);
+}
+
+/* Inputs */
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.custom-amount-input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    border: 2px solid var(--brand-orange, #e67e22);
+    border-radius: 8px;
+    outline: none;
+    color: #1E293B;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: var(--brand-orange, #e67e22);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.primary-btn:hover {
+    background: var(--brand-deep-orange, #d35400);
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.back-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.step-title {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    padding-right: 24px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+    .donation-container {
+        flex-direction: column;
+        align-items: center;
+        max-width: 500px;
+        padding-top: 40px; /* Space for close button */
+    }
+
+    .donation-close-btn {
+        top: 10px;
+        right: 10px;
+        color: white; /* Ensure visible against dark overlay if outside card, or make it fixed */
+    }
+
+    .donation-card.visuals {
+        width: 100%;
+        max-width: 100%;
+        min-height: 150px;
+        flex: none; /* Don't expand infinitely */
+        display: none; /* On smaller mobile, maybe hide visuals to focus on conversion? Or shrink height */
+    }
+}
+
+@media (max-width: 600px) {
+    .donation-overlay {
+        padding: 0.5rem;
+        align-items: flex-start; /* Ensure top aligns */
+    }
+    
+    .donation-container {
+        margin-top: 20px;
+        padding-top: 0;
+    }
+
+    .donation-close-btn {
+        position: fixed; /* Fix to screen so it doesn't scroll away */
+        top: 16px;
+        right: 16px;
+        background: rgba(0,0,0,0.2);
+        border-radius: 50%;
+        padding: 4px;
+    }
+
+    .donation-card.visuals {
+        display: none; /* Hide image card on mobile to fit form on screen */
+    }
+
+    .donation-card.form {
+        width: 100%;
+        min-width: auto;
+        padding: 1.5rem;
+    }
+
+    .amount-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* Make buttons tap friendly */
+    .amount-btn, .freq-btn, .primary-btn {
+        min-height: 44px; 
+    }
+}
+
+@media (max-width: 360px) {
+    .amount-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 cols on very small screens */
+    }
+}
+
+.name-row {
+    display: flex;
+    gap: 16px;
+}
+
+@media (max-width: 480px) {
+    .name-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+.donation-view-content {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 600px) {
+    .donation-view-content {
+        padding: 1.25rem;
+    }
+}

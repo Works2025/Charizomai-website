@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Charizomai Foundation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" type="image/jpg" href="logo.jpg" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="nav-container container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.jpg" alt="Charizomai Foundation Logo" class="logo-img" />
+                <h1 class="logo-text">Charizomai Foundation</h1>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="causes.html">Our Causes</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="donate.html" class="nav-donate-btn">Donate</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header-clean">
+            <div class="container">
+                <span class="badge">Get in Touch</span>
+                <h2>We'd Love to Hear From You</h2>
+                <p>Have questions about our work or want to volunteer? Send us a message.</p>
+            </div>
+        </section>
+
+        <section class="contact-section" style="padding: 0 0 6rem; background: white;">
+            <div class="container">
+                <div class="contact-layout">
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <div class="info-card" data-aos="fade-up">
+                            <h3>📍 Visit Us</h3>
+                            <p>123 Charity Avenue,<br>Accra, Ghana</p>
+                        </div>
+                        <div class="info-card" data-aos="fade-up" data-aos-delay="100">
+                            <h3>📞 Call Us</h3>
+                            <p>+233 50 123 4567<br>+233 20 987 6543</p>
+                        </div>
+                        <div class="info-card" data-aos="fade-up" data-aos-delay="200">
+                            <h3>✉️ Email Us</h3>
+                            <p>info@charizomaifoundation.org<br>support@charizomaifoundation.org</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="donation-wrapper"
+                        style="margin: 0; box-shadow: var(--shadow-lg); border: 1px solid #E5E7EB;"
+                        data-aos="fade-left">
+                        <form id="contact-form" class="donation-form">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">Send a Message</h3>
+
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="John Doe" required />
+
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+                            <label for="message"
+                                style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="How can we help you?"
+                                style="width: 100%; padding: 1rem; border: 1px solid #E2E8F0; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-family: inherit; font-size: 1rem; background: #F9FAFB;"
+                                required></textarea>
+
+                            <button type="submit" class="btn-primary"
+                                style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <p>&copy; <span id="year"></span> Charizomai Foundation. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
