@@ -3640,8 +3640,17 @@ img {
   }
 }
 
+/* Global reset for mobile hero image - Hidden by default */
+.mobile-hero-image {
+  display: none !important;
+}
+
 /* DESKTOP HERO REDESIGN - GoFundMe Style (Pixel Perfect) */
 @media (min-width: 769px) {
+  .mobile-hero-image {
+    display: none !important;
+  }
+
   .hero {
     padding: 4rem 0 0;
     /* Remove bottom padding so banner sits flush */
