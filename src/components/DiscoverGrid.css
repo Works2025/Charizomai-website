@@ -1,0 +1,80 @@
+.categories-section {
+    padding: 5rem 0;
+    background: white;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.categories-header {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.categories-title {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.02em;
+}
+
+.categories-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.category-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+    color: #374151;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    text-decoration: none;
+}
+
+.category-pill:hover {
+    background-color: #02a95c;
+    color: white;
+    border-color: #02a95c;
+    transform: scale(1.05); /* Managed by framer motion but backup here */
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .categories-section {
+        padding: 3rem 0;
+    }
+
+    .categories-title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .categories-pills {
+        gap: 0.8rem;
+        padding: 0 1rem;
+        justify-content: flex-start; /* Often better to left align or scroll on mobile, but center wrapping is okay too */
+        /* Let's try a horizontal scroll for pills on mobile? It's very modern. 
+           Or just wrap centered. Centered wrap is safer for now. */
+    }
+
+    .category-pill {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+        flex-grow: 1; /* Make them fill width a bit more uniformly */
+        justify-content: center;
+    }
+}

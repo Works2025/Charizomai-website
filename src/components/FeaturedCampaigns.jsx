@@ -132,29 +132,10 @@ export default function FeaturedCampaigns() {
                 </p>
 
                 {isFeatured && (
-                    <div style={{ 
-                        marginTop: '1.25rem', 
-                        padding: '1.5rem', 
-                        background: 'linear-gradient(145deg, #1F2937 0%, #111827 100%)', 
-                        borderRadius: '12px',
-                        color: 'white',
-                        position: 'relative',
-                        overflow: 'hidden',
-                        border: '1px solid rgba(255,255,255,0.05)',
-                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-                    }}>
+                    <div className="fc-partner-content">
                         <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                             <div>
-                                <div style={{ 
-                                    display: 'inline-flex', 
-                                    alignItems: 'center', 
-                                    gap: '6px', 
-                                    background: 'rgba(230, 126, 34, 0.15)', 
-                                    padding: '4px 8px', 
-                                    borderRadius: '4px',
-                                    marginBottom: '8px',
-                                    border: '1px solid rgba(230, 126, 34, 0.3)'
-                                }}>
+                                <div className="fc-featured-badge">
                                     <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#E67E22' }}></span>
                                     <span style={{ color: '#E67E22', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Corporate Match</span>
                                 </div>
@@ -165,26 +146,7 @@ export default function FeaturedCampaigns() {
                                 Partners are matching donations this week. Your support goes twice as far.
                             </p>
                             
-                            <button style={{ 
-                                alignSelf: 'flex-start',
-                                marginTop: '0.25rem',
-                                background: 'white', 
-                                color: '#111827', 
-                                border: 'none', 
-                                padding: '0.6rem 1.25rem', 
-                                borderRadius: '8px', 
-                                fontWeight: 600, 
-                                fontSize: '0.875rem', 
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '8px',
-                                transition: 'transform 0.2s',
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                            }}
-                            onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
-                            onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
-                            >
+                            <button className="fc-partner-btn">
                                 Partner with Us <ChevronRight size={14} />
                             </button>
                         </div>
@@ -210,89 +172,22 @@ export default function FeaturedCampaigns() {
         <section style={{ padding: '3.5rem 0', background: '#FAFAFA' }} className="featured-campaigns-section">
             <div className="container">
                 {/* Header Section */}
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'flex-end',
-                    marginBottom: '3rem',
-                    maxWidth: '1200px',
-                    margin: '0 auto 3rem',
-                    flexWrap: 'wrap',
-                    gap: '1.5rem'
-                }}>
+                <div className="fc-header">
                     <div>
-                        <p style={{
-                            fontSize: '0.875rem',
-                            fontWeight: 600,
-                            color: '#E67E22',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.05em',
-                            marginBottom: '0.75rem'
-                        }}>
+                        <p className="fc-tag">
                             Featured Campaigns
                         </p>
-                        <h2 style={{
-                            fontSize: '2.25rem',
-                            fontWeight: 800,
-                            color: '#1a1a1a',
-                            margin: 0,
-                            lineHeight: 1.2,
-                            maxWidth: '600px'
-                        }}>
+                        <h2 className="fc-title">
                             Support Causes That Matter
                         </h2>
                     </div>
 
                     {/* Navigation Arrows */}
-                    <div style={{ display: 'flex', gap: '0.75rem' }}>
-                        <button style={{
-                            width: '44px',
-                            height: '44px',
-                            borderRadius: '8px',
-                            border: '1px solid #E5E7EB',
-                            background: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s ease'
-                        }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.background = '#E67E22';
-                                e.currentTarget.style.borderColor = '#E67E22';
-                                e.currentTarget.querySelector('svg').style.color = 'white';
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.background = 'white';
-                                e.currentTarget.style.borderColor = '#E5E7EB';
-                                e.currentTarget.querySelector('svg').style.color = '#6B7280';
-                            }}
-                        >
+                    <div className="fc-nav">
+                        <button className="fc-nav-btn">
                             <ChevronLeft size={20} color="#6B7280" style={{ transition: 'color 0.2s ease' }} />
                         </button>
-                        <button style={{
-                            width: '44px',
-                            height: '44px',
-                            borderRadius: '8px',
-                            border: '1px solid #E5E7EB',
-                            background: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s ease'
-                        }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.background = '#E67E22';
-                                e.currentTarget.style.borderColor = '#E67E22';
-                                e.currentTarget.querySelector('svg').style.color = 'white';
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.background = 'white';
-                                e.currentTarget.style.borderColor = '#E5E7EB';
-                                e.currentTarget.querySelector('svg').style.color = '#6B7280';
-                            }}
-                        >
+                        <button className="fc-nav-btn">
                             <ChevronRight size={20} color="#6B7280" style={{ transition: 'color 0.2s ease' }} />
                         </button>
                     </div>

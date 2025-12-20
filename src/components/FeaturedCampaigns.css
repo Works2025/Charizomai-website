@@ -12,25 +12,6 @@
     gap: 1.5rem;
 }
 
-/* Tablet: Stack main grid (Featured on top, others below) */
-@media (max-width: 1024px) {
-    .campaigns-main-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* Maybe make the featured card not full height on mobile? */
-    .campaign-card-featured .campaign-image-container {
-        height: 240px !important;
-    }
-}
-
-/* Mobile: Stack the small cards too */
-@media (max-width: 600px) {
-    .campaigns-right-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 .campaign-card {
     background: white;
     border-radius: 12px;
@@ -46,4 +27,136 @@
 
 .campaign-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.fc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.fc-tag {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #E67E22;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.fc-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.2;
+    max-width: 600px;
+}
+
+.fc-nav {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.fc-nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.fc-nav-btn:hover {
+    background: #E67E22;
+    border-color: #E67E22;
+}
+
+.fc-nav-btn:hover svg {
+    color: white !important; /* Force overrides inline style if any */
+}
+
+/* Tablet: Stack main grid (Featured on top, others below) */
+@media (max-width: 1024px) {
+    .campaigns-main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile: Stack the small cards too */
+@media (max-width: 768px) {
+    .fc-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .fc-title {
+        font-size: 1.75rem;
+    }
+
+    .fc-nav {
+        display: none; /* Hide nav arrows on mobile if swipe logic isn't there, or keep if grid is scrollable */
+    }
+
+    .campaigns-right-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Featured Card Styles */
+.fc-featured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(230, 126, 34, 0.15);
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(230, 126, 34, 0.3);
+}
+
+.fc-partner-content {
+    margin-top: 1.25rem;
+    padding: 1.5rem;
+    background: linear-gradient(145deg, #1F2937 0%, #111827 100%);
+    border-radius: 12px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.fc-partner-btn {
+    align-self: flex-start;
+    margin-top: 0.25rem;
+    background: white;
+    color: #111827;
+    border: none;
+    padding: 0.6rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.fc-partner-btn:hover {
+    transform: translateY(-1px);
 }

@@ -4124,243 +4124,124 @@ img {
 }
 
 /* =========================================
-   FINAL MOBILE HERO REDESIGN - Immersive "Poster" Style
+   MOBILE HERO FIX - Clean Stacked Layout
    ========================================= */
-
-/* Ensure the inline mobile image block is HIDDEN since we use background now */
-/* =========================================
-   FINAL MOBILE HERO REDESIGN - Split "Sheet" Layout
-   ========================================= */
-
-/* Ensure the inline mobile image element is hidden */
-.mobile-hero-image {
-  display: none !important;
-}
 
 @media (max-width: 768px) {
-  /* 1. Split Background Setup */
+  /* Reset Hero Container */
   .hero {
-    position: relative !important;
-    padding: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    min-height: 100vh !important; /* Allow scroll */
-    background-color: #ffffff !important;
-    /* The Image occupies the top ~50% */
-    background-image: url('/charity-group-photo.jpg') !important;
-    background-repeat: no-repeat !important;
-    background-position: top center !important;
-    background-size: 100% 55vh !important; /* Leaves bottom white */
-    overflow-x: hidden !important;
+    padding: 2rem 0 3rem;
+    min-height: auto;
+    background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+    display: block; /* Standard block/flex behavior */
   }
 
-  /* 2. The Content "Sheet" */
   .hero-wrapper {
-    width: 100% !important;
-    /* Push down to overlap bottom of image slightly */
-    margin-top: 45vh !important; 
-    border-radius: 32px 32px 0 0 !important;
-    background: #ffffff !important;
-    padding: 2.5rem 1.5rem 4rem !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    box-shadow: 0 -10px 40px rgba(0,0,0,0.1) !important; /* Lift effect */
-    position: relative !important;
-    z-index: 10 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 0;
+    padding: 0 1.5rem;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
   }
 
-  /* 3. Hide Desktop Elements */
-  .floating-circle, 
-  .hero-icon-wrapper,
-  .hero-bottom-text-grid { 
+  /* Show Mobile Image */
+  .mobile-hero-image {
+    display: block !important;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 2rem;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  .mobile-hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Hide Desktop Ornaments */
+  .floating-circle,
+  .hero-wrapper::before, 
+  .hero-wrapper::after {
     display: none !important;
   }
 
-  /* 4. Typography - Clean Black on White */
+  /* Content Styling */
   .hero-content {
-     width: 100% !important;
-     padding: 0 !important;
-     margin: 0 !important;
-     text-align: center !important;
-  }
-
-  .hero-top-tag {
-    font-size: 0.8rem !important;
-    font-weight: 700 !important;
-    color: #E67E22 !important; /* Orange accent */
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-    margin-bottom: 1rem !important;
-    display: inline-block !important;
-    background: rgba(230, 126, 34, 0.1);
-    padding: 6px 12px;
-    border-radius: 20px;
-    border: none !important;
-  }
-
-  .hero-headline {
-    font-family: 'Inter', system-ui, sans-serif !important;
-    font-size: 2.4rem !important; /* Readable size */
-    line-height: 1.2 !important;
-    font-weight: 800 !important;
-    color: #111 !important;
-    margin-bottom: 1.5rem !important;
-    text-shadow: none !important;
-  }
-
-  /* 5. Button - Wide & Accessible */
-  .hero-buttons {
-    width: 100% !important;
-    margin-bottom: 1.5rem !important;
-    display: flex !important;
-    justify-content: center !important;
-  }
-
-  .btn-hero-cta {
-    display: block !important;
-    width: 100% !important;
-    padding: 1.25rem !important;
-    font-size: 1.1rem !important;
-    font-weight: 700 !important;
-    background: #111 !important; /* Black button = Premium */
-    color: white !important; 
-    border-radius: 16px !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
-    text-align: center !important;
-    border: none !important;
-  }
-
-  /* 6. Features - Minimal Icons inline below button */
-  .hero-features-banner {
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 1rem 0 0 !important;
-    background: transparent !important;
-    border: none !important;
-    display: flex !important;
-    flex-direction: row !important; /* Horizontal on mobile sheet */
-    justify-content: center !important;
-    gap: 1.5rem !important;
-    opacity: 0.6;
-  }
-  
-  .feature-item {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      font-size: 0.7rem !important;
-      gap: 0.2rem !important;
-      color: #666 !important;
-      text-align: center !important;
-  }
-  
-  .feature-item svg {
-      width: 20px !important;
-      height: 20px !important;
-  }
-  
-  .feature-item span {
-      display: none !important; /* Hide text, kept distinct by icons or show short? Hiding for clean look */
-  }
-  
-  .feature-separator { display: none !important; }
-}
- 
-/* HERO: Ensure nav is transparent on mobile to float over image? 
-   Or keeps white. Immersive usually implies transparent header.
-   Let's try a transparent header for mobile to complete the look. */
-@media (max-width: 768px) {
-  .site-header {
-      background: rgba(255,255,255,0.95) !important; /* Keep widely readable for now, transparent is risky for logo colors */
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
-      position: sticky !important;
-  }
-}
-
-/* HERO: Ensure the mobile hero button has enough contrast */
-@media (max-width: 768px) {
-  .btn-hero-cta {
-    background: #ffffff !important;
-    color: #000000 !important;
-  }
-}
-
-/* HERO ANIMATION: Add a subtle entry animation for premium feel */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 30px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-top-tag {
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0; /* Star hidden */
-  }
-  
-  .hero-headline {
-    animation: fadeInUp 0.8s ease-out 0.2s forwards;
-    opacity: 0;
-  }
-  
-  .btn-hero-cta {
-    animation: fadeInUp 0.8s ease-out 0.4s forwards;
-    opacity: 0;
-  }
-  
-  /* Add a glassmorphism effect to the container for better text readability */
-  .hero-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    text-align: center;
     width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.0) 70%);
-    z-index: -1;
-    pointer-events: none;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    transform: none !important; /* Disable complex animations if any */
   }
-}
 
-/* HERO: Polish the button interaction for mobile touch */
-@media (max-width: 768px) {
-  .btn-hero-cta:active {
-    transform: scale(0.96) !important; /* Satisfying click feedback */
-    background: #f0f0f0 !important;
+  .hero-top-tag {
+    font-size: 0.85rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    background: rgba(230, 126, 34, 0.1);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
   }
-}
 
-/* HERO: Final tweaks for Sheet Layout - Reset conflicting animations */
-@media (max-width: 768px) {
-  /* Disable the previous fadeInUp animations as they might conflict with layout */
-  .hero-top-tag, 
-  .hero-headline, 
+  .hero-headline {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
   .btn-hero-cta {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 12px;
+    font-weight: 700;
   }
-}
 
-/* NUCLEAR OPTION: Hide any staying overlapping elements from previous iterations */
-@media (max-width: 768px) {
-    .floating-circle, 
-    .circle-progress-wrapper, 
-    .circle-inner,
-    .circle-label,
-    .hero-icon-wrapper svg,
-    .hero-wrapper::before {
-        display: none !important;
-        opacity: 0 !important;
-        visibility: hidden !important;
-        width: 0 !important;
-        height: 0 !important;
-    }
+  /* Stats / Bottom Text */
+  .hero-bottom-text-grid {
+    display: none; /* Hide dense text on mobile to declutter */
+  }
+  
+  /* Features Banner */
+  .hero-features-banner {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    padding: 2rem 1.5rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    width: 100%;
+  }
+
+  .feature-item {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+  }
+
+  .feature-separator {
+    display: none;
+  }
 }
