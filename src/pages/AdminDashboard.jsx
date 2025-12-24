@@ -425,19 +425,35 @@ export default function AdminDashboard() {
     };
     const handleSaveNewCause = async (newCause) => {
         try {
+            const payload = {
+                title: newCause.title,
+                goal: newCause.goal,
+                desc: newCause.description,
+                img: newCause.image_url,
+                badge: newCause.badge,
+                color: newCause.color,
+                organizer: newCause.organizer,
+                location: newCause.location,
+                story: newCause.story,
+                status: 'active',
+                raised: 0
+            };
+
             const { data, error } = await supabase
                 .from('causes')
-                .insert([newCause])
+                .insert([payload])
                 .select();
             
             if (error) throw error;
             
             if (data) {
+                const createdCause = data[0];
                 setCauses([...causes, {
-                    id: data[0].id,
-                    title: data[0].title,
-                    raised: parseFloat(data[0].raised || 0),
-                    goal: parseFloat(data[0].goal),
+                    ...createdCause,
+                    description: createdCause.desc,
+                    image_url: createdCause.img,
+                    raised: parseFloat(createdCause.raised || 0),
+                    goal: parseFloat(createdCause.goal),
                     status: 'active',
                     donors: 0,
                     growth: '+0%'
@@ -452,19 +468,34 @@ export default function AdminDashboard() {
     };
     const handleSaveCause = async (updatedCause) => {
         try {
+            // Prepare payload matching DB schema (based on causesData.js)
+            const payload = {
+                title: updatedCause.title,
+                goal: updatedCause.goal,
+                desc: updatedCause.description || updatedCause.desc,
+                img: updatedCause.image_url || updatedCause.img,
+                badge: updatedCause.badge,
+                color: updatedCause.color,
+                organizer: updatedCause.organizer,
+                location: updatedCause.location,
+                story: updatedCause.story,
+                status: updatedCause.status
+            };
+
             const { error } = await supabase
                 .from('causes')
-                .update(updatedCause)
+                .update(payload)
                 .eq('id', updatedCause.id);
             
             if (error) throw error;
             
+            // Update local state with the new values (ensure UI fields persist)
             setCauses(causes.map(c => c.id === updatedCause.id ? { ...c, ...updatedCause } : c));
             logAction('Update Cause', { causeId: updatedCause.id, title: updatedCause.title });
             handleCloseModals();
         } catch (error) {
             console.error('Error updating cause:', error);
-            alert('Error updating cause!');
+            alert(`Error updating cause: ${error.message}`);
         }
     };
     const handleDeleteCause = async (causeId) => {
@@ -854,8 +885,14 @@ export default function AdminDashboard() {
                 const { data: causesData } = await supabase.from('causes').select('*');
                 if (causesData) {
                     setCauses(causesData.map(c => ({
-                        id: c.id, title: c.title, raised: parseFloat(c.raised), goal: parseFloat(c.goal),
-                        status: 'active', donors: 0, growth: '+0%'
+                        ...c,
+                        description: c.description || c.desc, // Map for UI
+                        image_url: c.image_url || c.img,      // Map for UI
+                        raised: parseFloat(c.raised || 0), 
+                        goal: parseFloat(c.goal || 0),
+                        status: c.status || 'active', 
+                        donors: c.donors || 0, 
+                        growth: c.growth || '+0%'
                     })));
                 }
 
