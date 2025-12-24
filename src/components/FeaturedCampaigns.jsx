@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Handshake } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { supabase } from '../supabase';
 import './FeaturedCampaigns.css';
 
@@ -55,116 +56,119 @@ export default function FeaturedCampaigns() {
     const gridCampaigns = campaigns.slice(1);
 
     const CampaignCard = ({ campaign, isFeatured = false }) => (
-        <motion.article
-            className="campaign-card"
-            whileHover={{
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
-            }}
-        >
-            {/* Image */}
-            <div style={{
-                height: isFeatured ? '320px' : '180px',
-                overflow: 'hidden',
-                position: 'relative'
-            }}>
-                <img
-                    src={campaign.image}
-                    style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover'
-                    }}
-                    alt={campaign.title}
-                />
+        <Link to={`/causes/${campaign.id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block', height: '100%' }}>
+            <motion.article
+                className="campaign-card"
+                whileHover={{
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+                }}
+                style={{ height: '100%' }}
+            >
+                {/* Image */}
                 <div style={{
-                    position: 'absolute',
-                    bottom: '10px',
-                    left: '10px',
-                    background: 'rgba(0, 0, 0, 0.75)',
-                    color: 'white',
-                    padding: '0.35rem 0.75rem',
-                    borderRadius: '4px',
-                    fontSize: '0.8rem',
-                    fontWeight: 500
+                    height: isFeatured ? '320px' : '180px',
+                    overflow: 'hidden',
+                    position: 'relative'
                 }}>
-                    {campaign.donations}
-                </div>
-            </div>
-
-            {/* Content */}
-            <div style={{ padding: isFeatured ? '1.5rem' : '1.25rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                <h3 style={{
-                    fontSize: isFeatured ? '1.25rem' : '1rem',
-                    fontWeight: 600,
-                    marginBottom: '0.25rem',
-                    color: '#1a1a1a',
-                    lineHeight: 1.2,
-                }}>
-                    {campaign.title}
-                </h3>
-
-                {/* Progress Bar */}
-                <div style={{ marginBottom: '0.5rem' }}>
+                    <img
+                        src={campaign.image}
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                        }}
+                        alt={campaign.title}
+                    />
                     <div style={{
-                        height: '6px',
-                        background: '#E5E7EB',
-                        borderRadius: '3px',
-                        overflow: 'hidden'
+                        position: 'absolute',
+                        bottom: '10px',
+                        left: '10px',
+                        background: 'rgba(0, 0, 0, 0.75)',
+                        color: 'white',
+                        padding: '0.35rem 0.75rem',
+                        borderRadius: '4px',
+                        fontSize: '0.8rem',
+                        fontWeight: 500
                     }}>
-                        <div
-                            style={{
-                                width: `${campaign.percent}%`,
-                                height: '100%',
-                                background: '#00B964',
-                                borderRadius: '3px'
-                            }}
-                        />
+                        {campaign.donations}
                     </div>
                 </div>
 
-                {/* Amount */}
-                <p style={{
-                    fontSize: '0.9rem',
-                    color: '#1a1a1a',
-                    margin: 0
-                }}>
-                    <span style={{ fontWeight: 700 }}>{campaign.raised}</span> raised of {campaign.goal}
-                </p>
+                {/* Content */}
+                <div style={{ padding: isFeatured ? '1.5rem' : '1.25rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    <h3 style={{
+                        fontSize: isFeatured ? '1.25rem' : '1rem',
+                        fontWeight: 600,
+                        marginBottom: '0.25rem',
+                        color: '#1a1a1a',
+                        lineHeight: 1.2,
+                    }}>
+                        {campaign.title}
+                    </h3>
 
-                {isFeatured && (
-                    <div className="fc-partner-content">
-                        <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                            <div>
-                                <div className="fc-featured-badge">
-                                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#E67E22' }}></span>
-                                    <span style={{ color: '#E67E22', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Corporate Match</span>
+                    {/* Progress Bar */}
+                    <div style={{ marginBottom: '0.5rem' }}>
+                        <div style={{
+                            height: '6px',
+                            background: '#E5E7EB',
+                            borderRadius: '3px',
+                            overflow: 'hidden'
+                        }}>
+                            <div
+                                style={{
+                                    width: `${campaign.percent}%`,
+                                    height: '100%',
+                                    background: '#00B964',
+                                    borderRadius: '3px'
+                                }}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Amount */}
+                    <p style={{
+                        fontSize: '0.9rem',
+                        color: '#1a1a1a',
+                        margin: 0
+                    }}>
+                        <span style={{ fontWeight: 700 }}>{campaign.raised}</span> raised of {campaign.goal}
+                    </p>
+
+                    {isFeatured && (
+                        <div className="fc-partner-content">
+                            <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                                <div>
+                                    <div className="fc-featured-badge">
+                                        <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#E67E22' }}></span>
+                                        <span style={{ color: '#E67E22', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Corporate Match</span>
+                                    </div>
+                                    <h4 style={{ margin: 0, fontWeight: 700, fontSize: '1.25rem', letterSpacing: '-0.02em', color: 'white' }}>Double Your Impact</h4>
                                 </div>
-                                <h4 style={{ margin: 0, fontWeight: 700, fontSize: '1.25rem', letterSpacing: '-0.02em', color: 'white' }}>Double Your Impact</h4>
+                                
+                                <p style={{ margin: 0, fontSize: '0.9rem', color: '#9CA3AF', lineHeight: 1.5, maxWidth: '90%' }}>
+                                    Partners are matching donations this week. Your support goes twice as far.
+                                </p>
+                                
+                                <button className="fc-partner-btn">
+                                    Partner with Us <ChevronRight size={14} />
+                                </button>
                             </div>
                             
-                            <p style={{ margin: 0, fontSize: '0.9rem', color: '#9CA3AF', lineHeight: 1.5, maxWidth: '90%' }}>
-                                Partners are matching donations this week. Your support goes twice as far.
-                            </p>
-                            
-                            <button className="fc-partner-btn">
-                                Partner with Us <ChevronRight size={14} />
-                            </button>
+                             <div style={{
+                                position: 'absolute',
+                                bottom: '-15px',
+                                right: '-15px',
+                                opacity: 0.05,
+                                transform: 'rotate(-15deg)',
+                                pointerEvents: 'none'
+                             }}>
+                                <Handshake size={120} color="white" />
+                             </div>
                         </div>
-                        
-                         <div style={{
-                            position: 'absolute',
-                            bottom: '-15px',
-                            right: '-15px',
-                            opacity: 0.05,
-                            transform: 'rotate(-15deg)',
-                            pointerEvents: 'none'
-                         }}>
-                            <Handshake size={120} color="white" />
-                         </div>
-                    </div>
-                )}
-            </div>
-        </motion.article>
+                    )}
+                </div>
+            </motion.article>
+        </Link>
     );
 
 
