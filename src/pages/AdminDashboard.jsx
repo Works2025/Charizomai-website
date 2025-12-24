@@ -428,8 +428,8 @@ export default function AdminDashboard() {
             const payload = {
                 title: newCause.title,
                 goal: newCause.goal,
-                desc: newCause.description,
-                img: newCause.image_url,
+                description: newCause.description,
+                image_url: newCause.image_url,
                 badge: newCause.badge,
                 color: newCause.color,
                 organizer: newCause.organizer,
@@ -450,8 +450,8 @@ export default function AdminDashboard() {
                 const createdCause = data[0];
                 setCauses([...causes, {
                     ...createdCause,
-                    description: createdCause.desc,
-                    image_url: createdCause.img,
+                    description: createdCause.description,
+                    image_url: createdCause.image_url,
                     raised: parseFloat(createdCause.raised || 0),
                     goal: parseFloat(createdCause.goal),
                     status: 'active',
@@ -468,12 +468,12 @@ export default function AdminDashboard() {
     };
     const handleSaveCause = async (updatedCause) => {
         try {
-            // Prepare payload matching DB schema (based on causesData.js)
+            // Prepare payload matching DB schema
             const payload = {
                 title: updatedCause.title,
                 goal: updatedCause.goal,
-                desc: updatedCause.description || updatedCause.desc,
-                img: updatedCause.image_url || updatedCause.img,
+                description: updatedCause.description || updatedCause.desc,
+                image_url: updatedCause.image_url || updatedCause.img,
                 badge: updatedCause.badge,
                 color: updatedCause.color,
                 organizer: updatedCause.organizer,
@@ -489,8 +489,8 @@ export default function AdminDashboard() {
             
             if (error) throw error;
             
-            // Update local state with the new values (ensure UI fields persist)
-            setCauses(causes.map(c => c.id === updatedCause.id ? { ...c, ...updatedCause } : c));
+            // Update local state
+            setCauses(causes.map(c => c.id === updatedCause.id ? { ...c, ...updatedCause, ...payload } : c));
             logAction('Update Cause', { causeId: updatedCause.id, title: updatedCause.title });
             handleCloseModals();
         } catch (error) {
