@@ -435,7 +435,6 @@ export default function AdminDashboard() {
                 organizer: newCause.organizer,
                 location: newCause.location,
                 story: newCause.story,
-                status: 'active',
                 raised: 0
             };
 
@@ -478,8 +477,7 @@ export default function AdminDashboard() {
                 color: updatedCause.color,
                 organizer: updatedCause.organizer,
                 location: updatedCause.location,
-                story: updatedCause.story,
-                status: updatedCause.status
+                story: updatedCause.story
             };
 
             const { error } = await supabase
