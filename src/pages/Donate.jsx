@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, ShieldCheck, CreditCard, Info } from 'lucide-react';
 import { usePaystackPayment } from 'react-paystack';
 import { loadStripe } from '@stripe/stripe-js';
@@ -9,6 +9,8 @@ import { supabase } from '../supabase';
 import { sendEmail, emailTemplates } from '../utils/emailService';
 
 export default function Donate() {
+    const location = useLocation();
+    const { cause } = location.state || {};
     const [amount, setAmount] = useState('200');
     const [tipPercent, setTipPercent] = useState(16.5);
     const [email, setEmail] = useState('');
@@ -205,7 +207,7 @@ export default function Donate() {
                             width: '56px',
                             height: '56px',
                             borderRadius: '4px',
-                            backgroundImage: 'url(/community-center-adjusted.jpg)',
+                            backgroundImage: `url(${cause ? cause.img : '/hero-1.jpg'})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
                             flexShrink: 0
@@ -218,14 +220,16 @@ export default function Donate() {
                                 margin: '0 0 6px 0',
                                 lineHeight: 1.3
                             }}>
-                                Help Peter fight for little Aurelias life
+                                {cause ? cause.title : 'Support Charizomai Foundation'}
                             </h1>
                             <p style={{
                                 fontSize: '14px',
                                 color: '#5f5f5f',
                                 margin: 0
                             }}>
-                                Still GH₵2,791,324 to go. Help us build momentum.
+                                {cause 
+                                    ? `Help us reach our goal of ${cause.goal}` 
+                                    : 'Your general donation helps us support all our causes.'}
                             </p>
                         </div>
                     </div>

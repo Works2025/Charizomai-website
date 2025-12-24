@@ -197,7 +197,7 @@ export default function CauseDetails() {
                             </div>
 
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
-                                <Link to="/donate" style={{
+                                <Link to="/donate" state={{ cause }} style={{
                                     background: '#E67E22', // Brand Orange
                                     color: 'white',
                                     border: 'none',
