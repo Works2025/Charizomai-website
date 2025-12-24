@@ -378,7 +378,7 @@ export default function About() {
                                 name: "Gloria Owusu Ansah",
                                 role: "Finance Director",
                                 desc: "Ensures transparency and maximum impact.",
-                                img: "/gloria-owusu-ansah.jpg"
+                                img: "/gloria-owusu-ansah-v2.jpg"
                             }
                         ].map((member, i) => (
                             <motion.div
